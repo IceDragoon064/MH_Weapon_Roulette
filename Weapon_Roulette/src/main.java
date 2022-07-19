@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -32,7 +31,7 @@ public class Main{
 				System.out.println("Your input: " + userSelection);
 			}
 			while(userSelection < 0 || userSelection > 3);
-				
+
 			switch(userSelection) {
 				case 1: 
 					System.out.println("You've chosen to start a new file.");
