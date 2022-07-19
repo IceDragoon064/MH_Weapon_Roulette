@@ -10,5 +10,5 @@ Switch Axe
 Charge Blade
 Insect Glaive
 Light Bowgun
-Heavy Bogun
+Heavy Bowgun
 Bow

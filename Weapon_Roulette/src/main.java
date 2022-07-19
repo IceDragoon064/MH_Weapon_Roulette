@@ -27,17 +27,17 @@ public class Main{
 			
 			Scanner userInput = new Scanner(System.in);
 			int userSelection = -1;
-			try {
+			do {
 				userSelection = userInput.nextInt();
 				System.out.println("Your input: " + userSelection);
 			}
-			catch(InputMismatchException ex) {
-				System.out.println("Your input is invalid, please try again.\n\n");
-			}
-			
+			while(userSelection < 0 || userSelection > 3);
+				
 			switch(userSelection) {
 				case 1: 
 					System.out.println("You've chosen to start a new file.");
+					FileManager fileManager = new FileManager();
+					fileManager.startNewFile();
 					break;
 				case 2:
 					System.out.println("You are resuming your progress.");
