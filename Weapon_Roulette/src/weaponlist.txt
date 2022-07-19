@@ -1,14 +1,14 @@
-Great Sword
-Long Sword
-Sword & Shield
-Dual Blades
-Lance
-Gunlance
-Hammer
-Hunting Horn
-Switch Axe
-Charge Blade
-Insect Glaive
-Light Bowgun
-Heavy Bogun
-Bow
+01. Great Sword
+02. Long Sword
+03. Sword & Shield
+04. Dual Blades
+05. Lance
+06. Gunlance
+07. Hammer
+08. Hunting Horn
+09. Switch Axe
+10. Charge Blade
+11. Insect Glaive
+12. Light Bowgun
+13. Heavy Bogun
+14. Bow

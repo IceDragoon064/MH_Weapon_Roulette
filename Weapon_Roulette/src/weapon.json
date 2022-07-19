@@ -1,0 +1,82 @@
+{
+    "weapon": [
+        {
+            "id": "1",
+            "name": "Great Sword",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "2",
+            "name": "Long Sword",
+            "weight": 0,
+            "used": true
+        },
+        {
+            "id": "3",
+            "name": "Sword & Shield",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "4",
+            "name": "Dual Blades",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "5",
+            "name": "Lance",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "6",
+            "name": "Gunlance",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "7",
+            "name": "Hammer",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "8",
+            "name": "Hunting Horn",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "9",
+            "name": "Switch Axe",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "10",
+            "name": "Insect Glaive",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "11",
+            "name": "Light Bowgun",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "12",
+            "name": "Heavy Bowgun",
+            "weight": 1,
+            "used": false
+        },
+        {
+            "id": "13",
+            "name": "Bow",
+            "weight": 1,
+            "used": false
+        }
+    ]
+}
