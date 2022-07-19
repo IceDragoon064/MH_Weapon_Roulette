@@ -7,7 +7,7 @@ import java.io.*;
  */
 public class main{
 	public static void main(String[] args) throws Exception {
-		File file = new File("src/weaponlist.txt");
+		File file = new File("C:\\Users\\omega\\Documents\\Java Projects\\MH_Weapon_Roulette\\Weapon_Roulette\\src\\weaponlist.txt");
 		BufferedReader br  = new BufferedReader(new FileReader(file));
 		String st;
 		while((st = br.readLine()) != null)
