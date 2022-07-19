@@ -1,0 +1,28 @@
+
+/**
+ 
+ * @author Leon Lu
+ * @version 18 July 2022
+ * This code's will select an element from a given string array
+ */
+public class main{
+	public static void main(String[] args) {
+		String[] weapons = new String[] {
+				"Great Sword",
+				"Long Sword",
+				"Sword & Shield",
+				"Dual Blades",
+				"Lance",
+				"Gunlance",
+				"Hammer",
+				"Hunting Horn",
+				"Switch Axe",
+				"Charge Blade",
+				"Insect Glaive",
+				"Light Bowgun",
+				"Heavy Bowgun",
+				"Bow"
+		};
+	}
+}
+
