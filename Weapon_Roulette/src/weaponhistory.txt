@@ -1,1 +1,111 @@
-1. Long Sword
+1. Great Sword
+2. Charge Blade
+3. Great Sword
+4. Gunlance
+5. Hunting Horn
+6. Sword & Shield
+7. Light Bowgun
+8. Lance
+9. Light Bowgun
+10. Hunting Horn
+11. Lance
+12. Charge Blade
+13. Bow
+14. Charge Blade
+15. Hunting Horn
+16. Heavy Bowgun
+17. Switch Axe
+18. Lance
+19. Gunlance
+20. Light Bowgun
+21. Dual Blades
+22. Switch Axe
+23. Hunting Horn
+24. Gunlance
+25. Long Sword
+26. Insect Glaive
+27. Sword & Shield
+28. Heavy Bowgun
+29. Hammer
+30. Insect Glaive
+31. Hammer
+32. Great Sword
+33. Long Sword
+34. Dual Blades
+35. Great Sword
+36. Charge Blade
+37. Bow
+38. Hunting Horn
+39. Charge Blade
+40. Hunting Horn
+41. Dual Blades
+42. Bow
+43. Heavy Bowgun
+44. Gunlance
+45. Light Bowgun
+46. Gunlance
+47. Insect Glaive
+48. Sword & Shield
+49. Great Sword
+50. Long Sword
+51. Light Bowgun
+52. Bow
+53. Hammer
+54. Switch Axe
+55. Light Bowgun
+56. Long Sword
+57. Insect Glaive
+58. Gunlance
+59. Lance
+60. Bow
+61. Hammer
+62. Lance
+63. Switch Axe
+64. Charge Blade
+65. Sword & Shield
+66. Heavy Bowgun
+67. Lance
+68. Long Sword
+69. Light Bowgun
+70. Insect Glaive
+71. Heavy Bowgun
+72. Lance
+73. Sword & Shield
+74. Hammer
+75. Great Sword
+76. Insect Glaive
+77. Hunting Horn
+78. Hammer
+79. Bow
+80. Gunlance
+81. Charge Blade
+82. Long Sword
+83. Heavy Bowgun
+84. Bow
+85. Hunting Horn
+86. Long Sword
+87. Light Bowgun
+88. Bow
+89. Light Bowgun
+90. Gunlance
+91. Switch Axe
+92. Sword & Shield
+93. Light Bowgun
+94. Great Sword
+95. Switch Axe
+96. Great Sword
+97. Bow
+98. Insect Glaive
+99. Bow
+100. Great Sword
+101. Heavy Bowgun
+102. Hammer
+103. Switch Axe
+104. Long Sword
+105. Gunlance
+106. Long Sword
+107. Heavy Bowgun
+108. Bow
+109. Insect Glaive
+110. Lance
+111. Long Sword

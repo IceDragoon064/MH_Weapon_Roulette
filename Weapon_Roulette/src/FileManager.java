@@ -2,46 +2,58 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class FileManager {
 
 	private String historyLink = "src/weaponhistory.txt";
 	private String statLink = "src/weaponstat.txt";
+	private String dataLink = "src/data.csv";
 	
 	Path historyPath = Paths.get(historyLink);
 	Path statPath = Paths.get(statLink);
+	Path dataPath = Paths.get(dataLink);
 	
 	WeaponList weaponList = new WeaponList();
 	String[] wList = weaponList.getList();
 	
+	DataArray data = new DataArray();
+
+	
+	String ignore = "0123456789.";
 	/**
 	 * Method to start a new roulette session
 	 * @throws Exception
 	 */
 	public void startNewFile() throws Exception {
 		makeHistoryFile();	
+		makeStatFile();
 	}
 	
 	/**
 	 * Method to check for files before resuming
 	 * @throws Exception
 	 */
-	public void resumeRoulette() throws Exception {
+	public boolean checkFiles() throws Exception {
+		System.out.println("Checking files...");
 		boolean historyFound = checkForFile(historyLink);
 		boolean statFound = checkForFile(statLink);
 		
 		// All files found and the program will resuming
 		if(historyFound == true && statFound == true) {
 			System.out.println("All files found!");
+			return true;
 		}
 		
 		// A file is missing!
 		else {
 			System.out.println("A file is missing!");
+			return false;
 		}
 	}
-	
 	
 	/**
 	 * Method to generate a new weapon history file
@@ -54,98 +66,95 @@ public class FileManager {
 			Files.delete(historyPath);
 		}
 		
-		Scanner userStartingWeapon = new Scanner(System.in);
-		int weaponId = -1;
+		File file = new File(historyLink);
+		if(file.createNewFile() == true) {
+			System.out.println("Weapon History File created!");
+		} else {
+			System.out.println("Unable to create Weapon History File!");
+		}
 
-		// User input validation to prevent InputMismatchException
-		do {
-			// Read weaponlist.txt to display options for user
-			System.out.println("Choose your starting weapon.");
-
-			for(int i = 0; i < wList.length; i++) {
-				System.out.println((i+1) + ". " + wList[i]);
-			}
-			weaponId = userStartingWeapon.nextInt();
-			
-			// Incorrect input message
-			if(weaponId < 1 || weaponId > 14)
-				System.out.println("Incorrect input. Please try again.");
-		} 
-		while(weaponId < 1 || weaponId > 14);
-		System.out.println("You've chosen weapon: " + wList[weaponId - 1]);
-		updateHistoryFile(wList[weaponId - 1]);
-		makeStatFile(wList[weaponId - 1], weaponId);
 	}
 	
-	public void makeStatFile(String firstWeaponName, int index) throws Exception {
+	/**
+	 * Method to generate stat file
+	 * @param firstWeaponName - the first weapon name
+	 * @param index - the index position in the file
+	 * @throws Exception
+	 */
+	public void makeStatFile() throws Exception {
 		//Delete old file
 		if(checkForFile(statLink) == true) {
 			Files.delete(statPath);
 		}
 		
-		BufferedWriter output = new BufferedWriter(new FileWriter(statLink));
-		for(int i = 0; i < wList.length; i++) {
-			if(i != (index - 1)) {
+		File file = new File(statLink);
+		if(file.createNewFile() == true) {
+			System.out.println("Weapon Usage File created!");
+			BufferedWriter output = new BufferedWriter(new FileWriter(statLink));
+			for(int i = 0; i < wList.length; i++) {
 				output.write("0");
 				output.newLine();
-			} else {
-				output.write("1");
-				output.newLine();
 			}
+			output.flush();
+			output.close();
+		} else {
+			System.out.println("Unable to create Weapon Usage File!");
 		}
-		output.flush();
-		output.close();
 		
 	}
 	
 	/**
 	 * Update weaponhistory.txt with the assumption it exists
 	 */
-	public void updateHistoryFile(String weaponName) throws Exception{
-		File history = new File(historyLink);
-
-		// Create weapon txt file and add first weapon
-		// Else, update file
-		if(history.createNewFile()) {
-			LineNumberReader reader = new LineNumberReader(new FileReader(historyLink));
-			BufferedWriter output = new BufferedWriter(new FileWriter(historyLink));
-			output.write((reader.getLineNumber() + 1) + ". " + weaponName);
+	public void updateHistoryFile(int index) throws Exception {
+			BufferedWriter output = new BufferedWriter(new FileWriter(historyLink, true));
+			long lineCount = (Files.lines(historyPath).count()) + 1;
+			System.out.println("Adding " + wList[index]);
+			output.write(lineCount + ". " + wList[index]);
 			output.newLine();
 			output.flush();
 			output.close();
-			reader.close();
-		} else {
-			LineNumberReader reader = new LineNumberReader(new FileReader(historyLink));
-			BufferedWriter output = new BufferedWriter(new FileWriter(historyLink,true));
-			output.write((reader.getLineNumber() + 1) + ". " + weaponName);
-			output.newLine();
-			output.flush();
-			output.close();
-			reader.close();
-		}
 	}
 	
-
-	public String readHistoryFile() throws Exception{
-		if(checkForFile(historyLink) == true) {
-			
-			int index = (int) Files.lines(historyPath).count();
-			String lastWeapon = Files.readAllLines(Paths.get(historyLink)).get(index);
-			return lastWeapon;
+	public void updateStatFile(int index) throws Exception {
+		for(int i = 0; i < wList.length; i++) {
+			if(i == (index)) {
+				int usageCount = (Integer.parseInt(Files.readAllLines(Paths.get(statLink)).get(i))) + 1;
+				
+			}
 		}
 		
-		else {
-			System.out.println("Warning: File does not exist.");
-			return "Nope";
-		}
+		
+	}
+	
+	public void newRoll(int rollNum) throws Exception {
+		updateHistoryFile(rollNum);
+		updateStatFile(rollNum);
+	}
+
+	public String readHistoryFile() throws Exception {
+		int index = (int) Files.lines(historyPath).count();
+		
+		String lastWeapon = Files.readAllLines(Paths.get(historyLink)).get(index - 1);
+		lastWeapon = lastWeapon.replaceAll("[0-9|.]", "");
+		return lastWeapon;
 	}
 	
 	/**
 	 * Check if specific file exists
 	 * @return true if the file exists; false otherwise
 	 */
-	private Boolean checkForFile(String filePath) throws Exception {
+	private boolean checkForFile(String filePath) throws Exception {
 		File tempFile = new File(filePath);
 		return (tempFile.exists());
+	}
+
+	
+	public boolean checkRoll(int indexRoll) {
+		return weaponList.checkWeapon(indexRoll);
+	}
+	
+	public String getWeaponById(int index) {
+		return weaponList.getWeaponById(index);
 	}
 }

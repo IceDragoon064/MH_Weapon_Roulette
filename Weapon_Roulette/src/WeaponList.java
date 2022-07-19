@@ -35,11 +35,22 @@ public class WeaponList{
 	 * @param selectedWeapon - the weapon chosen from the roulette to be compared
 	 * @return true if the selected weapon is the same as the last weapon; false if otherwise
 	 */
-	public boolean checkWeapon(String selectedWeapon) {
-		return (selectedWeapon == this.lastWeapon);
+	public boolean checkWeapon(int number) {
+		String selectedWeapon = this.getWeaponById(number);
+		if(selectedWeapon == this.lastWeapon) {
+			return true;
+		} else {
+			this.lastWeapon = selectedWeapon;
+			return false;
+		}
+		
 	}
 	
 	public int getSize() {
 		return weaponList.length;
+	}
+	
+	public String getWeaponById(int id) {
+		return weaponList[id];
 	}
 }
