@@ -1,14 +1,14 @@
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
+Great Sword,1
+Long Sword,3
+Sword & Shield,0
+Dual Blades,0
+Lance,0
+Gunlance,0
+Hammer,0
+Hunting Horn,2
+Switch Axe,0
+Charge Blade,0
+Insect Glaive,0
+Light Bowgun,2
+Heavy Bowgun,1
+Bow,1

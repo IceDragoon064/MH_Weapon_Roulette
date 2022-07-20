@@ -11,7 +11,6 @@ public class Roulette{
 		System.out.println("-----------------------------------------------");
 		System.out.println("| 1. Start a new file.                        |");
 		System.out.println("| 2. Continue your last progress              |");
-		System.out.println("| 3. How to use this program                  |");
 		System.out.println("| 0. End this program.                        |");
 		System.out.println("-----------------------------------------------");
 		
@@ -36,9 +35,6 @@ public class Roulette{
 					System.out.println("Your last weapon used is" + fileManager.readHistoryFile());
 					spinRoulette();
 				}
-				break;
-			case 3:
-				System.out.println("Displaying instructions.");
 				break;
 			case 0:
 				System.out.println("Exiting program. Have a good day.");

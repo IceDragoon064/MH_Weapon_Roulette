@@ -16,14 +16,10 @@ public class FileManager {
 	Path historyPath = Paths.get(historyLink);
 	Path statPath = Paths.get(statLink);
 	Path dataPath = Paths.get(dataLink);
-	
-	WeaponList weaponList = new WeaponList();
-	String[] wList = weaponList.getList();
-	
+
 	DataArray data = new DataArray();
 
-	
-	String ignore = "0123456789.";
+
 	/**
 	 * Method to start a new roulette session
 	 * @throws Exception
@@ -91,7 +87,8 @@ public class FileManager {
 		if(file.createNewFile() == true) {
 			System.out.println("Weapon Usage File created!");
 			BufferedWriter output = new BufferedWriter(new FileWriter(statLink));
-			for(int i = 0; i < wList.length; i++) {
+			String[][]dataArray = data.getDataArray();
+			for(int i = 0; i < dataArray.length; i++) {
 				output.write("0");
 				output.newLine();
 			}
@@ -108,23 +105,36 @@ public class FileManager {
 	 */
 	public void updateHistoryFile(int index) throws Exception {
 			BufferedWriter output = new BufferedWriter(new FileWriter(historyLink, true));
+			String weaponName = data.getWeaponById(index);
 			long lineCount = (Files.lines(historyPath).count()) + 1;
-			System.out.println("Adding " + wList[index]);
-			output.write(lineCount + ". " + wList[index]);
+			System.out.println("Adding " + weaponName);
+			output.write(lineCount + ". " + weaponName);
 			output.newLine();
 			output.flush();
 			output.close();
 	}
 	
 	public void updateStatFile(int index) throws Exception {
-		for(int i = 0; i < wList.length; i++) {
-			if(i == (index)) {
-				int usageCount = (Integer.parseInt(Files.readAllLines(Paths.get(statLink)).get(i))) + 1;
-				
+		String[][]dataArray = data.getDataArray();
+		int oldCount = Integer.parseInt(dataArray[index][1]);
+		String newCount = String.valueOf(oldCount+1);
+		dataArray[index][1] = newCount;
+		data.setDataArray(dataArray);
+		
+		StringBuilder builder = new StringBuilder();
+		for(int x = 0; x < dataArray.length; x++) {
+			for(int y = 0; y < dataArray[y].length; y++) {
+				builder.append(dataArray[x][y]+"");
+				if(y < dataArray[y].length-1) {
+					builder.append(",");
+				}	
 			}
+			builder.append("\n");
 		}
 		
-		
+		BufferedWriter writer = new BufferedWriter(new FileWriter(statLink));
+		writer.write(builder.toString());
+		writer.close();
 	}
 	
 	public void newRoll(int rollNum) throws Exception {
@@ -134,10 +144,13 @@ public class FileManager {
 
 	public String readHistoryFile() throws Exception {
 		int index = (int) Files.lines(historyPath).count();
-		
 		String lastWeapon = Files.readAllLines(Paths.get(historyLink)).get(index - 1);
 		lastWeapon = lastWeapon.replaceAll("[0-9|.]", "");
 		return lastWeapon;
+	}
+	
+	public void readStatFile() {
+		
 	}
 	
 	/**
@@ -149,12 +162,11 @@ public class FileManager {
 		return (tempFile.exists());
 	}
 
-	
 	public boolean checkRoll(int indexRoll) {
-		return weaponList.checkWeapon(indexRoll);
+		return data.checkWeapon(indexRoll);
 	}
 	
 	public String getWeaponById(int index) {
-		return weaponList.getWeaponById(index);
+		return data.getWeaponById(index);
 	}
 }
